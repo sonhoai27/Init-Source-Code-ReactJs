@@ -1,0 +1,12 @@
+:root {
+    --primary-color: #eac6b9;
+    --second-color: #5D9D90;
+    --primary-dark-color: #222;
+    --second-dark-color: #4f4f4f;
+    --third-dark-color: #585858;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
