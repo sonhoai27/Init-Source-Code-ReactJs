@@ -20,6 +20,7 @@
         "@babel/core": "^7.2.2",
         "@babel/plugin-syntax-dynamic-import": "^7.2.0",
         "@babel/preset-env": "^7.2.3",
+        "@types/jest": "^23.3.12",
         "@types/node": "^10.12.18",
         "@types/react": "^16.7.18",
         "@types/react-dom": "^16.0.11",
@@ -59,7 +60,13 @@
         "build": "yarn run clean-dist && webpack -p --config=webpack/pro.js",
         "clean-dist": "rm -f -r -d build",
         "lint": "tslint --project tsconfig.json --config tslint.json",
+        "lint:fix": "npm run lint -- --fix",
         "dev": "yarn run start-dev",
         "start-dev": "webpack-dev-server --progress --config=webpack/dev.js"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint"
+        }
     }
 }
