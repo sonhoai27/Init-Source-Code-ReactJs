@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
-import axios from 'axios'
 
 interface IAppProps {
 }
@@ -8,13 +7,6 @@ interface IAppProps {
 class App extends React.Component<IAppProps> {
   constructor(props: any) {
     super(props)
-  }
-
-  componentDidMount() {
-    axios.get('/api/brands')
-    .then((result) => {
-      console.log(result)
-    })
   }
 
   render() {
