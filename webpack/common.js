@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -30,7 +31,7 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 use: ['babel-loader', 'source-map-loader'],
-                exclude: /node_modules(?!\/quill-image-drop-module|quill-image-resize-module)/,
+                exclude: /node_modules/,
             },
             {
                 test: /\.tsx?$/,
@@ -86,7 +87,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: '../public/index.html',
             minify: {
-                collapseWhitespace: true
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
             },
             chunksSortMode: 'auto'
         }),
@@ -104,9 +114,21 @@ module.exports = {
                 vendors: false,
                 vendor: {
                     chunks: 'all',
+                    priority: 1,
                     test: /node_modules/
                 }
             }
-        }
+        },
+        minimizer: [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                uglifyOptions: {
+                    output: {
+                        comments: false,
+                    },
+                },
+            })
+        ],
     }
 }

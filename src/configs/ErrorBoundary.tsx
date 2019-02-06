@@ -11,7 +11,7 @@ class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = { error: null, errorInfo: null };
   }

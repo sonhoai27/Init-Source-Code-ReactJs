@@ -6,7 +6,7 @@ interface IAppProps {
 }
 
 class App extends React.Component<IAppProps> {
-  constructor(props) {
+  constructor(props: any) {
     super(props)
   }
 

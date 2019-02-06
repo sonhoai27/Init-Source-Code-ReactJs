@@ -8,7 +8,8 @@ import ErrorBoundary from '@app/configs/ErrorBoundary'
 import initStore from '@app/stores'
 import App from '@app/App'
 
-const store = initStore();
+// @ts-ignore
+const store = initStore({}, []);
 
 render(
   <ErrorBoundary>
