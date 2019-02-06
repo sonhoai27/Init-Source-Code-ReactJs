@@ -48,7 +48,7 @@ module.exports = {
                         options: {
                             importLoaders: 1,
                             modules: true,
-                            localIdentName: "sh__[hash:base64:25]",
+                            localIdentName: "[hash:base64:25]",
                         }
                     },
                     { loader: 'postcss-loader' },
@@ -81,9 +81,7 @@ module.exports = {
     },
     plugins: [
         new CheckerPlugin(),
-        new webpack.ProvidePlugin({
-            'window.Quill': 'quill'
-        }),
+        new webpack.ProvidePlugin({}),
         new HtmlWebpackPlugin({
             template: '../public/index.html',
             minify: {
