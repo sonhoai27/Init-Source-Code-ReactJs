@@ -1,0 +1,33 @@
+.home {
+    list-style: none;
+    margin: 0px!important;
+    padding: 8px!important;
+    background: #000;
+    li {
+        width: calc(50% - 16px);
+        padding: 16px 32px;
+        background: #262626;
+        color: #fff;
+        margin: 16px auto;
+        border-radius: 24px;
+        div {
+            margin: 4px 0 16px 0;
+            span {
+                background: #0ac000;
+                text-transform: capitalize;
+                padding: 4px 8px;
+                line-height: 1px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+        }
+        p:last-child {
+            font-size: 14px;
+        }
+        p {
+            font-size: 18px;
+            color: #eee;
+            margin-bottom: 0px;
+        }
+    }
+}

@@ -11,11 +11,12 @@ const defaultMiddlewares = [
   loggerMiddleware,
 ];
 
+// @ts-ignore
 const composedMiddlewares = (middlewares: any[]) => {
 
   return compose(applyMiddleware(...defaultMiddlewares, ...middlewares));
 }
-const initialize = (initialState = {}, middlewares = []) => {
+const initialize = (initialState: object = {}, middlewares: any[] = []) => {
 
   return createStore(rootReducer, initialState, composedMiddlewares(middlewares));
 };

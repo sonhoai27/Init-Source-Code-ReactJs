@@ -9,7 +9,7 @@ import initStore from '@app/stores'
 import App from '@app/App'
 
 // @ts-ignore
-const store = initStore({}, []);
+const store = initStore();
 
 render(
   <ErrorBoundary>

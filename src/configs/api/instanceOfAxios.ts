@@ -8,7 +8,7 @@ const apiWithoutToken = () => (
   })
 )
 
-const apiWithToken = token => (
+const apiWithHeaderToken = token => (
   axios.create({
     baseURL: API_CONFIG().URL,
     headers: {
@@ -18,7 +18,7 @@ const apiWithToken = token => (
 )
 
 export {
-  apiWithToken,
+  apiWithHeaderToken,
 }
 
 export default apiWithoutToken;

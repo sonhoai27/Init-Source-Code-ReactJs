@@ -108,9 +108,7 @@ module.exports = {
     optimization: {
         splitChunks: {
             cacheGroups: {
-                default: false,
-                vendors: false,
-                vendor: {
+                vendors: {
                     chunks: 'all',
                     priority: 1,
                     test: /node_modules/

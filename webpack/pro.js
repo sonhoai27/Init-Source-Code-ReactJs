@@ -12,6 +12,16 @@ module.exports = merge(commonConfig, {
         path: resolve(__dirname, '../build/'),
         publicPath: '/'
     },
+    stats: {
+        colors: false,
+        hash: true,
+        timings: true,
+        assets: true,
+        chunks: true,
+        chunkModules: true,
+        modules: true,
+        children: true,
+    },
     devtool: '',
     plugins: [],
 });
