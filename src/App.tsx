@@ -1,11 +1,21 @@
 import * as React from 'react';
-import { apiFilms } from '@app/Apis/Films';
 
 const App = () => {
-  apiFilms()
+  const [users, setUsers] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('https://api.github.com/users')
+      .then(response => response.json())
+      .then(data => setUsers(data));
+  }, []);
+
   return (
     <div>
-      <h1>AAAA</h1>
+      {users.map((user: any) => (
+        <div key={user.id} className="card">
+          <h5>{user.login}</h5>
+        </div>
+      ))}
     </div>
   )
 }
