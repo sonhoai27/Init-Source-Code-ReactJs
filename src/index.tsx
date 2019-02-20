@@ -8,13 +8,10 @@ import ErrorBoundary from '@app/configs/ErrorBoundary'
 import initStore from '@app/stores'
 import App from '@app/App'
 
-// @ts-ignore
-const store = initStore({}, []);
-
 render(
   <ErrorBoundary>
     <AppContainer>
-      <Provider store={store}>
+      <Provider store={initStore}>
         <App/>
       </Provider>
     </AppContainer>

@@ -1,23 +1,22 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import promiseMiddleware from 'redux-promise-middleware';
-import thunkMiddleware from 'redux-thunk';
-
-import rootReducer from './reducers';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga'
 import loggerMiddleware from '@app/configs/LoggerMiddleware';
 
+import rootReducer from './reducers';
+import rootSaga from './rootSaga';
+
+const sagaMiddleware = createSagaMiddleware()
+
 const defaultMiddlewares = [
-  thunkMiddleware,
-  promiseMiddleware(),
+  sagaMiddleware,
   loggerMiddleware,
 ];
 
-const composedMiddlewares = (middlewares: any[]) => {
+const store = createStore(
+  rootReducer,
+  applyMiddleware(...defaultMiddlewares),
+)
 
-  return compose(applyMiddleware(...defaultMiddlewares, ...middlewares));
-}
-const initialize = (initialState = {}, middlewares = []) => {
+sagaMiddleware.run(rootSaga)
 
-  return createStore(rootReducer, initialState, composedMiddlewares(middlewares));
-};
-
-export default initialize;
+export default store;
