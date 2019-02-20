@@ -1,18 +1,13 @@
 import * as React from 'react';
+import { apiFilms } from '@app/Apis/Films';
 
-class App extends React.Component {
-  constructor(props: any) {
-    super(props)
-  }
-
-  render() {
-
-    return (
-      <div>
-        <h1>App</h1>
-      </div>
-    )
-  }
+const App = () => {
+  apiFilms()
+  return (
+    <div>
+      <h1>AAAA</h1>
+    </div>
+  )
 }
 
 export default App;
