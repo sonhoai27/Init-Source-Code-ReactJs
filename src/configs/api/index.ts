@@ -1,4 +1,4 @@
-const DEV = require('./dev.json')
+const DEV = require('./Dev.json')
 
 type TApiConfigsProps = {
   URL: string;
