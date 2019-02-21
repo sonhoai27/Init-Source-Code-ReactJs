@@ -5,6 +5,29 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
+const runtime = require('offline-plugin/runtime');
+const window = require('window');
+
+runtime.install({
+    onUpdating: () => {
+        console.log('SW Event:', 'onUpdating');
+    },
+    onUpdateReady: () => {
+        console.log('SW Event:', 'onUpdateReady');
+        // Tells to new SW to take control immediately
+        runtime.applyUpdate();
+    },
+    onUpdated: () => {
+        console.log('SW Event:', 'onUpdated');
+        // Reload the webpage to load into the new version
+        window.location.reload();
+    },
+
+    onUpdateFailed: () => {
+        console.log('SW Event:', 'onUpdateFailed');
+    }
+});
 
 const babelLoader = {
     loader: 'babel-loader',
@@ -103,7 +126,22 @@ module.exports = {
             { from: '../public/images/', to: '../build/images' },
             { from: '../public/css/', to: '../build/css' },
             { from: '../public/images/favicon.ico', to: '../build' }
-        ])
+        ]),
+        new OfflinePlugin({
+            externals: ['index.html'],
+            caches: all,
+            cacheMaps: [
+                {
+                    match: function(requestUrl) {
+                        return new URL('/', location);
+                    },
+                    requestTypes: ['navigate']
+                }
+            ],
+            ServiceWorker: {
+                events: true
+            }
+        })
     ],
     optimization: {
         splitChunks: {
@@ -136,5 +174,5 @@ module.exports = {
                 },
             })
         ],
-    }
+    },
 }
