@@ -34,7 +34,8 @@ module.exports = merge(commonConfig, {
         }],
         watchOptions: {
             ignored: /node_modules/
-        }
+        },
+        open: true
     },
     module: {
         rules: [{

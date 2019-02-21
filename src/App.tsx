@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SERVER_API_URL } from '@app/Shared/Consts';
 
 class App extends React.Component {
   constructor(props: any) {
@@ -9,7 +10,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>App</h1>
+        <h1>{SERVER_API_URL}</h1>
       </div>
     )
   }

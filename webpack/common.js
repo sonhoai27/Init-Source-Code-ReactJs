@@ -112,8 +112,16 @@ module.exports = {
                 vendors: false,
                 vendor: {
                     chunks: 'all',
-                    priority: 1,
+                    priority: 20,
                     test: /node_modules/
+                },
+                common: {
+                    name: 'common',
+                    minChunks: 2,
+                    chunks: 'all',
+                    priority: 10,
+                    reuseExistingChunk: true,
+                    enforce: true
                 }
             }
         },

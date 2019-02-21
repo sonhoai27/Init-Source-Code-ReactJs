@@ -19,6 +19,7 @@
     "import-name": false,
     "no-submodule-imports": false,
     "interface-over-type-literal": false,
+    "defaultSeverity": "warning",
     "variable-name": [
       true,
       "allow-pascal-case"

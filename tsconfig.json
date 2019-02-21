@@ -4,14 +4,16 @@
     "lib": [
       "es6",
       "dom",
-      "es2015.iterable"
+      "es2015"
     ],
     "target": "es5",
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "charset": "utf8",
     "downlevelIteration": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "removeComments": false,
     "skipLibCheck": true,
@@ -19,8 +21,7 @@
     "checkJs": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "strictNullChecks": true,
+    "importHelpers": true,
     "outDir": "/dist",
     "baseUrl": "./",
     "paths": {
@@ -30,14 +31,14 @@
     }
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
     "**/*.js",
     "dist",
     "build",
-    "webpack",
+    "webpack"
   ],
   "types": [
     "typePatches"
