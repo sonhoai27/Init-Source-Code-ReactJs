@@ -1,46 +1,24 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-
-import { sourcesSelector } from '@app/stores/sources/SourceSelectors';
-import { actionGetSources } from '@app/stores/sources/SourceActions';
 import List from './components/List';
+import { API_NEWS } from '@app/shared/consts';
 
 const S = require('./Home.scss')
 
-interface IHomeScreenProps {
-  sourcesState: any;
-  actionGetSources: () => void;
+const HomeScreen = () => {
+  const [sourcesState, setSourcesState] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch(`https://newsapi.org/v2/sources?apiKey=${API_NEWS}`)
+      .then(response => response.json())
+      .then(data => setSourcesState(data.sources));
+  }, [sourcesState]);
+
+  return (
+    <ul className={S['home']}>
+      <List
+        list={sourcesState}/>
+    </ul>
+  )
 }
 
-class HomeScreen extends React.Component<IHomeScreenProps> {
-  constructor (props) {
-    super(props)
-  }
-
-  componentDidMount() {
-    this.props.actionGetSources()
-  }
-
-  render() {
-    const {
-      sourcesState,
-    } = this.props
-
-    return (
-      <ul className={S['home']}>
-        <List
-          list={sourcesState.get('sources') ? sourcesState.get('sources').toJS() : []}/>
-      </ul>
-    )
-  }
-}
-
-const mapStateToProps = state => ({
-  sourcesState: sourcesSelector(state.sourceReducer),
-})
-
-const mapActionToProps = ({
-  actionGetSources,
-})
-
-export default connect(mapStateToProps, mapActionToProps)(HomeScreen)
+export default HomeScreen
