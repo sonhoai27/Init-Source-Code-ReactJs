@@ -37,5 +37,5 @@ OfflinePluginRuntime.install({
 
   onUpdateFailed: () => {
     console.log('SW Event:', 'onUpdateFailed');
-  }
+  },
 });
